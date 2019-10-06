@@ -32,8 +32,14 @@ function removeDups(numArr) {
         }
       }
       document.getElementById('resumeTitle').innerHTML = "Details » Original array: {" + document.getElementById('numArr').value + "}, Optimezed array: {" + numArr.toString() + "}"; 
-      document.getElementById('resultMult').innerHTML = resultCal; 
-      document.getElementById('resultMsg').innerHTML = "Max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod + " is <b>" + resultCal + "</b>"; 
+      
+      if (resultCal != "") {
+        document.getElementById('resultMult').innerHTML = resultCal; 
+        document.getElementById('resultMsg').innerHTML = "Max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod + " is <b>" + resultCal + "</b>"; 
+      } else {
+        document.getElementById('resultMult').innerHTML = 0; 
+        document.getElementById('resultMsg').innerHTML = "Not exist the max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod; 
+      }
       document.getElementById('resultSuccess').style.display = "block";
       document.getElementById('resultError').style.display = "none";
     } else {
