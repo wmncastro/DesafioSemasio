@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Semasio Challenge</title>
+
+  <link href="favicon.png" rel="shortcut icon" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/full-width-pics.css" rel="stylesheet">
+  
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Semasio Challenge</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.linkedin.com/in/wmncastro/" target="_blank">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header - set the background image for the header in the line below -->
+  <header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
+    <img class="img-fluid d-block mx-auto" src="logo.svg" width="172" alt="">
+  </header>
+
+  <!-- Content section -->
+  <section class="py-5">
+    <div class="container">
+      <h1>The Challenge</h1>
+      <p class="lead">Find the maximum product between two numbers from the array, that is a multiple of 3</p>
+      <p>Given an array of integers, find the maximum product between two numbers from the array, that is a multiple of 3.
+        The result for the input {6,8,8,7,2,5} should be 48 = 6*8. Note that 8*8 is the greatest product (64) but 64 isn't divisible by 3.
+        Given the input {1,9,2,4} the result should be  36 = 9*4, and not 81 (9*9) since you should't multiply a number by itself.</p>   
+    
+      <!-- From section -->
+      <form class="was-validated">
+        <div class="form-group">
+            <label for="inputArray">Array of Integer:</label>
+            <input type="text" class="form-control is-valid" id="numArr" aria-describedby="numArrHelp" placeholder="Enter array" required>
+            <div class="invalid-feedback">
+              Array of integer is required.
+            </div>
+            <small id="numArrHelp" class="form-text text-muted">Input array of integers like {6,8,8,7,2,5}.</small>
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="btnFind">Find Max Product</button>
+        </div>
+      </form>
+      
+      <div id="resultSuccess" style="display: none">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-body" style="text-align: center">
+            <h1 class="card-title" id="resultMult"></h1>
+            <p class="card-text" id="resultMsg"></p>
+          </div>
+        </div>
+            
+        <div class="card border-success mb-3">
+          <div class="card-body">
+            <h5 class="card-title" id="resumeTitle"></h5>
+            <p class="card-text" id="resumeText"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultError" style="display: none">
+        <div class="alert alert-danger" role="alert">
+          Invalid format or none values of Input array.
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Developed by <a href="https://www.linkedin.com/in/wmncastro/" target="_blank">Wagner Castro</a></p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/multipleOf.js"></script>
+</body>
+
+</html>
