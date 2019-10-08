@@ -1,49 +1,57 @@
 /* addEventListener for button click */
-document.getElementById("btnFind").addEventListener("click", maxMultipleOf);
+document.getElementById("btnFind").addEventListener("click", GetProduct);
 
-/* Remove duplicate values of array and re-order */
-function removeDups(numArr) {
-    let unique = {};
-    numArr.forEach(function(i) {
-      if(!unique[i]) {
-        unique[i] = true;
-      }
-    });
-    return Object.keys(unique);
-  }
-  
-  /* Return maximum product between two numbers from the array, that is a multiple of 3 */
-  function maxMultipleOf() {
-    var numArr = removeDups(document.getElementById('numArr').value.split(","));
-    if (!numArr.some(isNaN) && (numArr.toString() !== '' && numArr.length > 0) ) {
-      var maxProd = 0;
-      var multipl = 0;
-      var resultCal = "";
-      var mod = 3;
-      document.getElementById('resumeText').innerHTML = ""
-      for (i = 0; i < numArr.length; i++) {
-        for (j = i+1; j < numArr.length; j++) {
-          multipl = numArr[i] * numArr[j];
-          maxProd = (multipl % mod == 0) && (multipl > maxProd) ? multipl : maxProd;
-          if (maxProd == multipl) {
-            resultCal = numArr[i] + " x " + numArr[j] + " = " + multipl;
-          }
-          document.getElementById('resumeText').innerHTML += numArr[i] + " x " + numArr[j] + " = " + multipl + "<br>";
-        }
-      }
-      document.getElementById('resumeTitle').innerHTML = "Details » Original array: {" + document.getElementById('numArr').value + "}, Optimezed array: {" + numArr.toString() + "}"; 
+/* Reorder array */
+function reorder(numArr) {
+  numArr.sort(function(a, b){return b-a});
+  return numArr;
+}
+
+/* return maximum product between two numbers from the array, that is a multiple of mod */
+function maxMultipleOf(numArr, mod) {
+  var maxProd = 0;
+  var multipl = 0;
       
-      if (resultCal != "") {
-        document.getElementById('resultMult').innerHTML = resultCal; 
-        document.getElementById('resultMsg').innerHTML = "Max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod + " is <b>" + resultCal + "</b>"; 
-      } else {
-        document.getElementById('resultMult').innerHTML = 0; 
-        document.getElementById('resultMsg').innerHTML = "Not exist the max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod; 
+  for (i = 0; i < numArr.length; i++) {
+    for (j = i+1; j < numArr.length; j++) {
+      multipl = numArr[i] * numArr[j];
+      maxProd = (multipl % mod == 0) && (multipl > maxProd) ? multipl : maxProd;
+      document.getElementById('resumeText').innerHTML += numArr[i] + " x " + numArr[j] + " = " + multipl + "<br>";
+      if (maxProd > 0) {
+        return numArr[i] + " x " + numArr[j] + " = " + multipl;
       }
-      document.getElementById('resultSuccess').style.display = "block";
-      document.getElementById('resultError').style.display = "none";
-    } else {
-      document.getElementById('resultSuccess').style.display = "none";
-      document.getElementById('resultError').style.display = "block";
     }
   }
+  return maxProd;
+}
+
+/* To control display */
+function displayResult(resultSuccess, resultError) {
+  document.getElementById('resultSuccess').style.display = resultSuccess;
+  document.getElementById('resultError').style.display = resultError;
+}
+
+/* Main */
+function GetProduct() {
+  var numArr = reorder(document.getElementById('numArr').value.split(","));
+
+  //Check if array is valid
+  if (!numArr.some(isNaN) && (numArr.toString() !== '' && numArr.length > 0)) {
+    document.getElementById('resumeText').innerHTML = "";
+
+    var mod = 3;
+    var resultCal = maxMultipleOf(numArr, mod);
+
+    document.getElementById('resumeTitle').innerHTML = "Details » Original array: {" + document.getElementById('numArr').value + "}, Optimezed array: {" + numArr.toString() + "}"; 
+    document.getElementById('resultTitle').innerHTML = resultCal; 
+
+    if (resultCal > 0) {
+      document.getElementById('resultMsg').innerHTML = "Max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod + " is <b>" + resultCal + "</b>"; 
+    } else {
+      document.getElementById('resultMsg').innerHTML = "Not exist the max product between two numbers from the array <b>{" + document.getElementById('numArr').value + "}</b>, that is a multiple of " + mod; 
+    }
+    displayResult("block", "none");
+  } else {
+    displayResult("none", "block");
+  }
+}
